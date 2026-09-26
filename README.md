@@ -15,7 +15,7 @@ The backend allows players to bet on whether the next rolled dice number (1–6)
 
 ## Features & Safeguards
 
-- **Persistent In-Memory State**: Tracks player balance, current state (`IDLE` vs `IN_PROGRESS`), and pending payouts.
+- **Persistent In-Memory State**: Tracks player balance, current state (`PENDING` vs `IN_PROGRESS`), and pending payouts.
 - **Overlapping Play Protection**: A player cannot initiate a new bet while a round is already in progress without calling `end_play`.
 - **Balance Validation**: Bets cannot be zero, negative, or greater than the player's available balance.
 - **Thread Safety**: Concurrent read/write protection using mutex locks on player sessions and global registries.
@@ -25,7 +25,7 @@ The backend allows players to bet on whether the next rolled dice number (1–6)
 ## Requirements
 
 - [Go](https://go.dev/) (version 1.20 or newer)
-- [Postman Desktop App](https://www.postman.com/downloads) (or any WebSocket client)
+- [Postman Desktop App]
 
 ---
 
@@ -89,7 +89,7 @@ Places a bet on the next dice roll. Changes session state to `IN_PROGRESS`.
 ---
 
 #### 3. Settle and Close Round (`end_play`)
-Credits any winnings to the player's balance and resets state to `IDLE`.
+Credits any winnings to the player's balance and resets state to `PENDING`.
 
 * **Request:**
   ```json

@@ -1,4 +1,4 @@
-module dice-game-backend
+module dice-game
 
 go 1.20
 

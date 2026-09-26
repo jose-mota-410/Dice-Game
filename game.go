@@ -15,7 +15,7 @@ const (
 type GameState string
 
 const (
-	StateIdle       GameState = "IDLE"
+	StatePending       GameState = "PENDING"
 	StateInProgress GameState = "IN_PROGRESS"
 )
 

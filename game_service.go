@@ -28,7 +28,7 @@ func (s *GameService) GetOrCreateSession(clientID string) *PlayerSession {
 		session = &PlayerSession{
 			ClientID: clientID,
 			Balance:  100.0, // Saldo inicial
-			State:    StateIdle,
+			State:    StatePending,
 		}
 		s.players[clientID] = session
 	}
@@ -101,7 +101,7 @@ func (s *GameService) EndPlay(session *PlayerSession) (map[string]interface{}, e
 	credited := session.PendingWin
 	session.Balance += credited
 	session.PendingWin = 0
-	session.State = StateIdle
+	session.State = StatePending
 
 	return map[string]interface{}{
 		"credited_amount": credited,
